@@ -18,7 +18,12 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem "paperclip", "~> 5.0.0"
 gem 'rack-cors'
+gem "mini_magick"
+gem 'carrierwave'
 group :development, :test do
+  gem 'rspec-rails'
+  gem 'guard-rspec', require: false
+  gem 'factory_bot'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
