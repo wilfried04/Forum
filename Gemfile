@@ -15,6 +15,7 @@ gem 'kaminari'
 gem 'bcrypt'
 gem 'faker'
 
+
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
@@ -25,10 +26,12 @@ gem 'rack-cors'
 
 
 group :development, :test do
-
+  gem 'rspec-rails'
+  gem 'spring-commands-rspec'
   gem 'rspec-rails'
   gem 'guard-rspec', require: false
   gem 'factory_bot'
+  gem 'faker'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
