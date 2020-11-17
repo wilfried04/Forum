@@ -10,17 +10,21 @@ gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
-
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'kaminari'
 gem 'faker'
+
 gem 'devise'
+gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem 'image_processing', '~> 1.2'
 gem "paperclip", "~> 5.0.0"
 gem 'rack-cors'
-gem "mini_magick"
-gem 'carrierwave'
+
+
 group :development, :test do
+
   gem 'rspec-rails'
   gem 'guard-rspec', require: false
   gem 'factory_bot'
@@ -41,3 +45,7 @@ group :test do
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem "mini_magick"
+gem 'carrierwave'
+gem 'rubocop', require: false
+gem 'letter_opener_web'
