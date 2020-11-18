@@ -1,5 +1,5 @@
 <div class="container">
-  <% if logged_in? %>
+  <% if logger? %>
     <%=render 'form' %>
   <% else %>
      <span class="badge badge-pill badge-danger"><%= link_to "Log in", new_session_path%></span>

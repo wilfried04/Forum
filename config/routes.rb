@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root :to => "topics#index"
+  get 'sessions/new'
+  root 'topics#index'
+  resources :topics do
+    collection do
+      post :confirm
+    end
+  end
+  resources :sessions, only: [:new, :create, :destroy]
+  mount LetterOpenerWeb::Engine, at: "/inbox" if Rails.env.development?
 end
