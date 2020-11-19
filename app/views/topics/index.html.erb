@@ -1,8 +1,17 @@
-<div class="container">
+<%= render 'layouts/header' %>
+<div class="container-fluid">
+  <div class="row">
+    <%= render 'topics/left_bar' %>
 
-	<h1>Forum</h1>
-	<%= link_to "New" , new_topic_path , :class => "btn btn-success btn-lg" %>
-	
-	</div>
-	
+    <div class="col-md-7 p-3 list-group">
+      <h4>Thread list</h4>
+      <% @topics.each do |topic| %>
+        <div class="list-group-item list-group-item-action">
+          <%= link_to topic.title, topic_path(topic) %>
+        </div>
+      <% end %>
+    </div>
 
+    <%= render 'topics/right_bar' %>
+  </div>
+</div>

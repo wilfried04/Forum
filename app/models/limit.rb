@@ -1,2 +1,0 @@
-class Limit < ApplicationRecord
-end

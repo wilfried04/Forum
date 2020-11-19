@@ -1,57 +1,43 @@
 class TopicsController < ApplicationController
-    before_action :set_topic, only: [:show, :edit, :update, :destroy]
-    def index
-        @topics= Topic.all
-        #@user = User.all
-    end
-    def new
-        @Topic = Topic.new
-    end
+  def index
+    @topics = Topic.all.order(created_at: :desc)
+    @topic = Topic.new
+    @categories = Category.all
+  end
 
-    def create
-        @topic=Topic.new(topic_params)
-        @topic=current_user.topics.build(topic_params)
-        if params[:back]
-            render :new
-        else
-            if @topic.save
-                TopicMailer.contact_mail(@topic).deliver
-                flash[:success] = 'Post successfully create'
-                redirect_to topics_path
-            else
-                render :new
-            end
-        end
+  def new
+    @topic = Topic.new
+  end
+
+  def show
+    @topic = Topic.find(params[:id])
+    @comments = @topic.comments.includes(:topic)
+    @comment = Comment.new
+  end
+
+  def create
+    @topic = Topic.new(topic_params)
+    if @topic.save
+      redirect_to topic_path(@topic)
+    else
+      @topics = Topic.all
+      @categories = Category.all
+      flash.now[:alert] = "Failed to create"
+      render :index
     end
-    def edit
-    end
-    def show
-        @favorite = current_user.favorites.find_by(topic_id: @topic.id)
-    end
-    def update
-            if @topic.update(topic_params)
-                flash[:success] = 'Post successfully update'
-                redirect_to topics_path
-            else
-             render :edit
-            end
-    end
-    def destroy
-        @topic.destroy
-        flash[:success] = 'Post successfully destroy'
-        redirect_to topics_path
-    end
-    def confirm
-        @topic=Topic.new(topic_params)
-        @topic = current_user.topics.build(topic_params)
-        render :new if @topic.invalid?
-    end
-    private
-    def topic_params
-        params.require(:topic).permit(:content,:image,:image_cache)
-    end
-    def set_topic
-            @topic=Topic.find(params[:id])
-    end
-    
+  end
+
+  def search
+    relation = Topic.includes(:comments)
+    @topics = relation.where("title LIKE?", "%#{params[:keyword]}%").references(:comments).or(relation.where("text LIKE?", "%#{params[:keyword]}%")).order(created_at: :desc)
+    @categories = Category.all
+  end
+
+  private
+  def topic_params
+    params.require(:topic).permit(:name, :title, category_ids: []).merge(user_id: current_user.id)
+  end
+  def topic_params
+    params.permit(:topic => [])
+  end
 end

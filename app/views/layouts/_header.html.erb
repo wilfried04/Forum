@@ -1,0 +1,20 @@
+<nav class="navbar navbar-dark bg-primary shadow-sm border-bottom">
+  <div class="container-fluid justify-content-around">
+    <div class="navbar-header">
+      <% if user_signed_in? %>
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "text-white" %>
+      <% else %>
+        <%= link_to 'Login', new_user_session_path, class: "text-white" %>
+      <% end %>
+    </div>
+    <div class="navbar-header">
+      <h3><%= link_to 'Thread list', root_path, class: "text-white"%></h3>
+    </div>
+    <div class="form-inline my-2 muy-lg-0">
+      <%= form_with(url:search_topics_path, method: :get, local: true) do |f|%>
+        <%= f.text_field :keyword, placeholder: "Search for threads", class: "form-control" %>
+        <%= f.submit 'Search', class: "btn btn-light" %>
+      <% end %>
+    </div>
+  </div>
+</nav>

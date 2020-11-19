@@ -1,11 +1,34 @@
+<%= render 'layouts/header' %>
 <div class="container">
-  <% if logger? %>
-    <%=render 'form' %>
-  <% else %>
-     <span class="badge badge-pill badge-danger"><%= link_to "Log in", new_session_path%></span>
-    <span class="badge badge-pill badge-warning"><%= link_to "Sign Up", new_user_path%></span>
-  <% end %>
+  <div class="row">
+    <div class="col-xl-10">
+      <%= form_for(@topic) do |f| %>
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, autofocus: true, placeholder: 'Please enter your name', class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :title %>
+          <%= f.text_field :title, placeholder: 'Please enter a title', class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :category %>
+          <p>
+            <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |c| %>
+              <%= c.label do %>
+                <%= c.check_box %>
+                <%= c.text %>
+              <% end %>
+            <% end %>
+          </p>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit 'Create New', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-
-
-

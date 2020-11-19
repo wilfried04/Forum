@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
-  root 'topics#index'
+  devise_for :users
+  root "topics#index"
   resources :topics do
     collection do
-      post :confirm
+      get 'search'
     end
+    resources :comments, only: :create
   end
-  resources :sessions, only: [:new, :create, :destroy]
-  mount LetterOpenerWeb::Engine, at: "/inbox" if Rails.env.development?
+  resources :categories, only: :show
 end

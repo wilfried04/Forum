@@ -1,7 +1,34 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+categories = Category.create([
+  {name: "news"},
+  {name: "World situation"},
+  {name: "society"},
+  {name: "Company/Occupation"},
+  {name: "Underground community"},
+  {name: "area"},
+  {name: "culture"},
+  {name: "Examination/school"},
+  {name: "Academic/Science"},
+  {name: "Academic/Humanities"},
+  {name: "Home appliances"},
+  {name: "Political economy"},
+  {name: "Food culture"},
+  {name: "life"},
+  {name: "The real condition"},
+  {name: "hobby"},
+  {name: "vehicle"},
+  {name: "Sports"},
+  {name: "Travel"},
+  {name: "Performing arts"},
+  {name: "gambling"},
+  {name: "game"},
+  {name: "this"},
+  {name: "musics"},
+  {name: "Mind and body"},
+  {name: "health"},
+  {name: "Internet relations"},
+  {name: "Other"}
+])
+
+User.create(
+  email: 'user@user.com', 
+  password: '1234567890')

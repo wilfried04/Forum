@@ -1,2 +1,0 @@
-class CategoryTopicshipsController < ApplicationController
-end
