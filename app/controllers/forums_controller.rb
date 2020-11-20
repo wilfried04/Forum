@@ -3,7 +3,7 @@ class ForumsController < ApplicationController
 
     def index
         @forums = Forum.all
-
+    end
     def new
         @forum = Forum.new    
         autherize?(@forum)
@@ -38,7 +38,7 @@ class ForumsController < ApplicationController
         redirect_to forums_url, notice: 'Forum was successfully deleted.'
     end
 
-    private
+        private
         def set_forum
             @forum = Forum.find(params[:id])
         autherize?(@forum)
