@@ -3,7 +3,7 @@ class TopicsController < ApplicationController
     before_action :find_forum
   
     def index
-      @topics = @forum.topics.paginate(:page=>params[:page],:per_page => 5)    
+          
     end
   
     def show
@@ -60,10 +60,10 @@ class TopicsController < ApplicationController
       end
   
       def find_forum
-        @forum = Forum.find(params[:forum_id])
+      #  @forum = Forum.find(params[:forum_id])
       end
       
       def topic_params
-        params.require(:topic).permit(:name, :description, :slug, :forum_id,:tag_list)
+        params.require(:topic).permit(:name, :description,:slug, :forum_id,:tag_list)
       end
 end
